@@ -59,18 +59,19 @@ public class MessageController {
         Integer magic_number = magic.getMagic_number();
         try {
 
-            List<Message> messages = new ArrayList<Message>();
-
-            if (magic_number == null)
-                messageRepository.findAll().forEach(messages::add);
-            else
-                messages = messageRepository.findByMagic_number(magic_number).stream().collect(Collectors.toList());
-
-            for (Message m : messages) {
-                System.out.println(m.toString());
-            }
-
-            messageRepository.deleteByMagic_number(magic_number);
+//
+//            List<Message> messages = new ArrayList<Message>();
+//
+//            if (magic_number == null)
+//                messageRepository.findAll().forEach(messages::add);
+//            else
+//                 messageRepository.findByMagic_number(magic_number).stream().collect(Collectors.toList());
+//
+//            for (Message m : messages) {
+//                System.out.println(m.toString());
+//            }
+//
+//            messageRepository.deleteByMagic_number(magic_number);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             System.out.println(e.getMessage());

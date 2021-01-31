@@ -1,40 +1,23 @@
 package pl.venustus.Cassandra.model;
 
-
 import java.util.UUID;
 
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
-import org.springframework.data.cassandra.core.mapping.Table;
-
-@Table
-public class Message {
-    @PrimaryKey
-    private UUID id;
+public class MessageDto {
     private String email;
     private String title;
     private String content;
-    private Integer magicNumber;
+    private Integer magic_number;
 
-    public Message() {
+    public MessageDto() {
 
     }
 
-    public Message(UUID id, String email, String title, String content, Integer magic_number) {
-        this.id = id;
+    public MessageDto( String email, String title, String content, Integer magic_number) {
+
         this.email = email;
         this.title = title;
         this.content = content;
         this.magic_number = magic_number;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getEmail() {
@@ -71,8 +54,7 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
-                "id=" + id +
+        return "MessageDto{" +
                 ", email='" + email + '\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
