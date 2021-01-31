@@ -32,7 +32,10 @@ public class TutorialController {
 
     @GetMapping("/tutorials")
     public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
+        System.out.println("test1");
         try {
+            //Tutorial _tutorial = tutorialRepository.save(new Tutorial(UUID.randomUUID(), "test1",  "test1", true ));
+            System.out.println("test");
             List<Tutorial> tutorials = new ArrayList<Tutorial>();
 
             if (title == null)
