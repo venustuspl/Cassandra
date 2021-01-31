@@ -7,13 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.venustus.Cassandra.model.Tutorial;
 import pl.venustus.Cassandra.repository.TutorialRepository;
-
+import com.datastax.driver.core.utils.UUIDs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class TutorialController {
@@ -23,19 +23,19 @@ public class TutorialController {
     @PostMapping("/tutorials")
     public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
         try {
-            Tutorial _tutorial = tutorialRepository.save(new Tutorial(UUID.randomUUID(), tutorial.getTitle(), tutorial.getDescription(), false));
+            System.out.println(tutorial.getDescription());
+            Tutorial _tutorial = tutorialRepository.save(new Tutorial(UUIDs.timeBased() , tutorial.getTitle(), tutorial.getDescription(), false));
             return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/tutorials")
     public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
-        System.out.println("test1");
         try {
-            //Tutorial _tutorial = tutorialRepository.save(new Tutorial(UUID.randomUUID(), "test1",  "test1", true ));
-            System.out.println("test");
+
             List<Tutorial> tutorials = new ArrayList<Tutorial>();
 
             if (title == null)
