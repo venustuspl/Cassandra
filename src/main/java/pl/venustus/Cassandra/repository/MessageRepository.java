@@ -19,7 +19,7 @@ public interface MessageRepository extends CassandraRepository<Message, UUID> {
     Optional<Message> findByMagic_number (@Param("magic_number") Integer magic_number);
 
     @AllowFiltering
-    List<Message> findByTitle(String title);
+    List<Message> findByMagicNumber(Integer magicnumber);
 
     @AllowFiltering
     @Modifying

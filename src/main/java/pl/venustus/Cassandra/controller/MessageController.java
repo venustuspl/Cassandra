@@ -24,7 +24,7 @@ public class MessageController {
     @PostMapping("/message")
     public ResponseEntity<Message> createMessage(@RequestBody Message message) {
         try {
-            Message _message = messageRepository.save(new Message(UUIDs.timeBased(), message.getEmail(), message.getTitle(), message.getContent(), message.getMagic_number()));
+            Message _message = messageRepository.save(new Message(UUIDs.timeBased(), message.getEmail(), message.getTitle(), message.getContent(), message.getMagicNumber()));
             return new ResponseEntity<>(_message, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -58,7 +58,7 @@ public class MessageController {
         System.out.println(magic.getMagic_number());
         Integer magic_number = magic.getMagic_number();
         try {
-
+            System.out.println(messageRepository.findByMagicNumber(101).stream().collect(Collectors.toList()).size());
 //
 //            List<Message> messages = new ArrayList<Message>();
 //

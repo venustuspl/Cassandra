@@ -21,12 +21,12 @@ public class Message {
 
     }
 
-    public Message(UUID id, String email, String title, String content, Integer magic_number) {
+    public Message(UUID id, String email, String title, String content, Integer magicNumber) {
         this.id = id;
         this.email = email;
         this.title = title;
         this.content = content;
-        this.magic_number = magic_number;
+        this.magicNumber = magicNumber;
     }
 
     public UUID getId() {
@@ -61,12 +61,12 @@ public class Message {
         this.content = content;
     }
 
-    public Integer getMagic_number() {
-        return magic_number;
+    public Integer getMagicNumber() {
+        return magicNumber;
     }
 
-    public void setMagic_number(Integer magic_number) {
-        this.magic_number = magic_number;
+    public void setMagicNumber(Integer magicNumber) {
+        this.magicNumber = magicNumber;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class Message {
                 ", email='" + email + '\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", magicnumber=" + magic_number +
+                ", magicnumber=" + magicNumber +
                 '}';
     }
 }
