@@ -12,11 +12,13 @@ import pl.venustus.Cassandra.model.Message;
 
 
 public interface MessageRepository extends CassandraRepository<Message, UUID> {
+
+    @Query("SELECT * FROM message  WHERE magic_number = :magic_number")
     @AllowFiltering
-    @Query("SELECT * FROM CData.venustus.message m WHERE m.magic_number = :magic_number")
     Optional<Message> findByMagic_number (@Param("magic_number") Integer magic_number);
 
     @Modifying
-    @Query("DELETE FROM CData.venustus.message m WHERE m.magic_number = :magic_number")
+    @AllowFiltering
+    @Query("DELETE FROM message  WHERE magic_number = :magic_number")
     Optional<Message> deleteByMagic_number (@Param("magic_number") Integer magic_number);
 }
