@@ -30,8 +30,8 @@ public class MessageController {
     @PostMapping("/message")
     public ResponseEntity<Message> createMessage(@RequestBody MessageDto messageDto) {
         try {
-            Message _message = messageRepository.save(messageMapper.mapToMessage(messageDto));
-            return new ResponseEntity<>(_message, HttpStatus.CREATED);
+            Message message = messageRepository.save(messageMapper.mapToMessage(messageDto));
+            return new ResponseEntity<>(message, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -42,7 +42,7 @@ public class MessageController {
     public ResponseEntity<List<Message>> getAllMessage(@RequestParam(required = false) Integer magic_number) {
         try {
 
-            List<Message> messages = new ArrayList<Message>();
+            List<Message> messages = new ArrayList<>();
 
             if (magic_number == null)
                 messageRepository.findAll().forEach(messages::add);
@@ -96,10 +96,10 @@ public class MessageController {
                  messages = messageRepository.findByMagicNumber(101).stream().collect(Collectors.toList());
 
             for (Message m : messages) {
-                System.out.println(m.toString());
+                messageRepository.delete(m);
             }
 
-            messageRepository.deleteByMagicNumber(magic_number);
+            //messageRepository.deleteByMagicNumber(magic_number);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -1,5 +1,6 @@
 package pl.venustus.Cassandra.repository;
 
+import com.datastax.oss.driver.api.mapper.annotations.Delete;
 import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import pl.venustus.Cassandra.model.Message;
@@ -19,6 +20,9 @@ public interface MessageRepository extends CassandraRepository<Message, UUID> {
 
     @AllowFiltering
     List<Message> deleteByMagicNumber(Integer magic_number);
+
+    @Delete
+    void delete(Message message);
 
     @AllowFiltering
     List<Message> findByEmail(String email);
