@@ -64,7 +64,7 @@ public class MessageController {
     public ResponseEntity<List<Message>> getAllMessagesByEmaila(@PathVariable(required = true) String email) {
         try {
 
-            List<Message> messages = new ArrayList<Message>();
+            List<Message> messages = new ArrayList<>();
 
             if (email == null)
                 messageRepository.findAll().forEach(messages::add);
@@ -88,7 +88,7 @@ public class MessageController {
         try {
             logger.info(String.valueOf(messageRepository.findByMagicNumber(101).stream().collect(Collectors.toList()).size()));
 
-            List<Message> messages = new ArrayList<Message>();
+            List<Message> messages = new ArrayList<>();
 
             if (magic_number == null)
                 messageRepository.findAll().forEach(messages::add);
