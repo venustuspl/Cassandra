@@ -1,12 +1,10 @@
 package pl.venustus.Cassandra.model;
 
 
-import java.util.UUID;
-
-import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
+
+import java.util.UUID;
 
 @Table
 public class Message {
@@ -72,11 +70,8 @@ public class Message {
     @Override
     public String toString() {
         return "Message{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
+                " email='" + email + '\'' +
                 ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", magicnumber=" + magicNumber +
-                '}';
+                ", content='" + content + '\'' + "}";
     }
 }

@@ -1,15 +1,11 @@
 package pl.venustus.Cassandra.repository;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
 import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.CassandraRepository;
-import org.springframework.data.cassandra.repository.Query;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.repository.query.Param;
 import pl.venustus.Cassandra.model.Message;
+
+import java.util.List;
+import java.util.UUID;
 
 
 public interface MessageRepository extends CassandraRepository<Message, UUID> {
@@ -22,8 +18,7 @@ public interface MessageRepository extends CassandraRepository<Message, UUID> {
     List<Message> findByMagicNumber(Integer magicnumber);
 
     @AllowFiltering
-    @Modifying
-    List<Message> deleteByMagicNumber ( Integer magic_number);
+    List<Message> deleteByMagicNumber(Integer magic_number);
 
     @AllowFiltering
     List<Message> findByEmail(String email);
