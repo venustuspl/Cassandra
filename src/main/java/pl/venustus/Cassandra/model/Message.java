@@ -2,6 +2,7 @@ package pl.venustus.Cassandra.model;
 
 
 import com.datastax.oss.driver.api.mapper.annotations.CqlName;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Table
 public class Message {
+    @Id
     @PrimaryKey
     @CqlName("id")
     private UUID id;

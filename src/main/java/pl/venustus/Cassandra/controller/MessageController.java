@@ -93,13 +93,13 @@ public class MessageController {
             if (magic_number == null)
                 messageRepository.findAll().forEach(messages::add);
             else
-                 messages = messageRepository.findByMagicNumber(101).stream().collect(Collectors.toList());
+                messages = messageRepository.findByMagicNumber(101).stream().collect(Collectors.toList());
 
             for (Message m : messages) {
-                messageRepository.delete(m);
+                logger.info(m.toString());
             }
 
-            //messageRepository.deleteByMagicNumber(magic_number);
+            messageRepository.deleteByMagicNumber(magic_number);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             System.out.println(e.getMessage());

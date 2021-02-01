@@ -18,8 +18,7 @@ public interface MessageRepository extends CassandraRepository<Message, UUID> {
     @AllowFiltering
     List<Message> findByMagicNumber(Integer magicnumber);
 
-    @AllowFiltering
-    List<Message> deleteByMagicNumber(Integer magic_number);
+    List<Message> deleteByMagicNumber(Integer magicnumber);
 
     @Delete
     void delete(Message message);
