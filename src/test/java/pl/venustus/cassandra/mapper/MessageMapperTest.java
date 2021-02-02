@@ -1,12 +1,12 @@
-package pl.venustus.Cassandra.mapper;
+package pl.venustus.cassandra.mapper;
 
 import com.datastax.driver.core.utils.UUIDs;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.venustus.Cassandra.model.Message;
-import pl.venustus.Cassandra.model.MessageDto;
-import pl.venustus.Cassandra.repository.MessageRepository;
+import pl.venustus.cassandra.model.Message;
+import pl.venustus.cassandra.model.MessageDto;
+import pl.venustus.cassandra.repository.MessageRepository;
 
 import java.util.ArrayList;
 import java.util.List;

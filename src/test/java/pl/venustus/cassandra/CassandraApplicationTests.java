@@ -1,4 +1,4 @@
-package pl.venustus.Cassandra;
+package pl.venustus.cassandra;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

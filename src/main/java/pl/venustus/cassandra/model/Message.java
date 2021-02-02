@@ -1,4 +1,4 @@
-package pl.venustus.Cassandra.model;
+package pl.venustus.cassandra.model;
 
 
 import com.datastax.oss.driver.api.mapper.annotations.CqlName;

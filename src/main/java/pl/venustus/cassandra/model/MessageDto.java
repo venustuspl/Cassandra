@@ -1,6 +1,4 @@
-package pl.venustus.Cassandra.model;
-
-import java.util.UUID;
+package pl.venustus.cassandra.model;
 
 public class MessageDto {
     private String email;
@@ -13,7 +11,6 @@ public class MessageDto {
     }
 
     public MessageDto( String email, String title, String content, Integer magic_number) {
-
         this.email = email;
         this.title = title;
         this.content = content;

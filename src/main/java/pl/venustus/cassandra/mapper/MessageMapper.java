@@ -1,10 +1,10 @@
-package pl.venustus.Cassandra.mapper;
+package pl.venustus.cassandra.mapper;
 
 import com.datastax.driver.core.utils.UUIDs;
 import org.springframework.stereotype.Component;
-import pl.venustus.Cassandra.model.Message;
-import pl.venustus.Cassandra.model.MessageDto;
-import pl.venustus.Cassandra.repository.MessageRepository;
+import pl.venustus.cassandra.model.Message;
+import pl.venustus.cassandra.model.MessageDto;
+import pl.venustus.cassandra.repository.MessageRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
