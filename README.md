@@ -39,6 +39,9 @@ curl -X POST localhost:8080/api/send -d '{"magic_number":101}' in normal situati
 mistake, but for now I've added json type curl -X POST localhost:8080/api/send -H "Content-Type: application/json" -d "
 {\"magic_number\":101}"
 
+##
+
+I've tought that I should more automate this process, but for now I wanted to made features.
 
 
 

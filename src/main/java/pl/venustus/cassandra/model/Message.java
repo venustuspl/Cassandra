@@ -6,6 +6,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
 @Table
@@ -14,9 +16,13 @@ public class Message {
     @PrimaryKey
     @CqlName("id")
     private UUID id;
+    @Email
     private String email;
+    @NotEmpty
     private String title;
+    @NotEmpty
     private String content;
+    @NotEmpty
     private Integer magicNumber;
 
     public Message() {

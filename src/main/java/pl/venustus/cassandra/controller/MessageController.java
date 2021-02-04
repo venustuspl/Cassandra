@@ -6,15 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.venustus.cassandra.mapper.MessageMapper;
 import pl.venustus.cassandra.model.Magic;
 import pl.venustus.cassandra.model.Message;
 import pl.venustus.cassandra.model.MessageDto;
-import pl.venustus.cassandra.repository.MessageRepository;
+import pl.venustus.cassandra.service.MessageService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -22,42 +20,19 @@ import java.util.stream.Collectors;
 public class MessageController {
 
     @Autowired
-    MessageRepository messageRepository;
-    @Autowired
-    MessageMapper messageMapper;
+    MessageService messageService;
+
     private final Logger logger = LoggerFactory.getLogger(MessageController.class);
 
     @PostMapping("/message")
     public ResponseEntity<Message> createMessage(@RequestBody MessageDto messageDto) {
         try {
-            Message message = messageRepository.save(messageMapper.mapToMessage(messageDto));
+            Message message = messageService.addMessage(messageDto);
             return new ResponseEntity<>(message, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @GetMapping("/message")
-    public ResponseEntity<List<Message>> getAllMessage(@RequestParam(required = false) Integer magic_number) {
-        try {
-
-            List<Message> messages = new ArrayList<>();
-
-            if (magic_number == null)
-                messages.addAll(messageRepository.findAll());
-            else
-                messages = messageRepository.findByMagicNumber(magic_number).stream().collect(Collectors.toList());
-
-            if (messages.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            return new ResponseEntity<>(messages, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 
     @GetMapping("/messages/{emailValue}")
     public ResponseEntity<List<Message>> getAllMessagesByEmailValue(@PathVariable(required = true) String emailValue) {
@@ -66,9 +41,9 @@ public class MessageController {
             List<Message> messages = new ArrayList<>();
 
             if (emailValue == null)
-                messages.addAll(messageRepository.findAll());
+                messages.addAll(messageService.getAllMessages());
             else
-                messages = messageRepository.findByEmail(emailValue).stream().collect(Collectors.toList());
+                messages = messageService.getMessageByEmailValue(emailValue);
 
             if (messages.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -76,6 +51,7 @@ public class MessageController {
 
             return new ResponseEntity<>(messages, HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -86,17 +62,16 @@ public class MessageController {
             List<Message> messages = new ArrayList<>();
 
             if (magic_number == null)
-                messages.addAll(messageRepository.findAll());
+                messages.addAll(messageService.getAllMessages());
             else
-                messages = messageRepository.findByMagicNumber(101).stream().collect(Collectors.toList());
-
+                messages = messageService.deleteMessage(magic_number);
             for (Message m : messages) {
                 logger.info(m.toString());
             }
 
-            messageRepository.deleteByMagicNumber(magic_number);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
