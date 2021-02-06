@@ -40,10 +40,11 @@ public class MessageController {
 
             List<Message> messages = new ArrayList<>();
 
-            if (emailValue == null)
+            if (emailValue == null) {
                 messages.addAll(messageService.getAllMessages());
-            else
+            } else {
                 messages = messageService.getMessageByEmailValue(emailValue);
+            }
 
             if (messages.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -61,10 +62,11 @@ public class MessageController {
         try {
             List<Message> messages = new ArrayList<>();
 
-            if (magic_number == null)
+            if (magic_number == null) {
                 messages.addAll(messageService.getAllMessages());
-            else
+            } else {
                 messages = messageService.deleteMessage(magic_number);
+            }
             for (Message m : messages) {
                 logger.info(m.toString());
             }
